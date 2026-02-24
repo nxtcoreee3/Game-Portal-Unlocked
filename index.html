@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Portal</title>
+
+<style>
+body{
+    margin:0;
+    font-family:-apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+}
+
+/* Header */
+header{
+    padding:20px;
+    font-size:24px;
+    backdrop-filter: blur(20px);
+    background: rgba(255,255,255,0.05);
+}
+
+/* Grid */
+.grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+    padding:30px;
+}
+
+.card{
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(25px);
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    cursor:pointer;
+    transition:0.25s;
+}
+
+.card:hover{
+    transform:scale(1.05);
+}
+
+/* Frame */
+iframe{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:none;
+    display:none;
+    background:black;
+    z-index:999;
+}
+
+.close{
+    position:fixed;
+    top:20px;
+    right:20px;
+    padding:10px 16px;
+    border-radius:12px;
+    background:rgba(255,0,0,0.2);
+    cursor:pointer;
+    display:none;
+    z-index:1000;
+}
+</style>
+</head>
+
+<body>
+
+<header>Game Portal</header>
+
+<div class="grid">
+    <div class="card" onclick="loadGame('drivemad.html')">
+        Drive Mad
+    </div>
+
+    <div class="card" onclick="loadGame('slitherio.html')">
+        Slither.io
+    </div>
+</div>
+
+<iframe id="gameFrame"></iframe>
+<div class="close" onclick="closeGame()">Close</div>
+
+<script>
+function loadGame(path){
+    const frame = document.getElementById("gameFrame");
+    frame.src = path;
+    frame.style.display = "block";
+    document.querySelector(".close").style.display = "block";
+}
+
+function closeGame(){
+    const frame = document.getElementById("gameFrame");
+    frame.src = "";
+    frame.style.display = "none";
+    document.querySelector(".close").style.display = "none";
+}
+</script>
+
+</body>
+</html>
